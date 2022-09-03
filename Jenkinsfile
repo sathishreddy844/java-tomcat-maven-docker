@@ -1,9 +1,7 @@
 pipeline {
     agent { label "linux-node" }
  parameters {
-  //  gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-    // parameters { string(name: 'NODE', defaultValue: 'some_node', description: '') }
-   gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH',string(name: 'NODE', defaultValue: 'master', description: '')
+ properties([parameters([string(defaultValue: 'main', description: 'please enter branch name you want to build!!', name: 'branch_name')])])
 
   }
     stages {
