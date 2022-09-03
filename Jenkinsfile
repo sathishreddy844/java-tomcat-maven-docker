@@ -1,5 +1,5 @@
 pipeline {
-    node { label "$NODE" }
+    node { label "linux-node" }
  parameters {
   //  gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
     // parameters { string(name: 'NODE', defaultValue: 'some_node', description: '') }
@@ -9,7 +9,7 @@ pipeline {
     stages {
 	    stage('Checkout') {           	
             steps {
-             git branch: "${params.BRANCH}", url: 'https://github.com/csenapati12/java-tomcat-maven-docker.git'
+             checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sathishreddy844/java-tomcat-maven-docker.git']]])
 		
             }
         }
